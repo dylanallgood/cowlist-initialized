@@ -1,9 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const cowRoutes = require('./routes/cowRoutes');
+const parser = require('body-parser');
+const express = require('express');
 
-app.use(express.static('./client/dist'))
+const app = express();
+const port = 3000;
 
-app.get('/', (req, res) => res.send('Hello World!'))
+// middleware
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
+app.use(express.static('./client/dist'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// routes
+app.use('/', cowRoutes);
+
+app.listen(port, () => console.log(`listening on port ${port}!`));
