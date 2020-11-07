@@ -1,5 +1,5 @@
 node_modules
 bundle.js
-package-lock.json
 server/db/keys.js
+package-lock.json
 
